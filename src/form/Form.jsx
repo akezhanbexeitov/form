@@ -1,81 +1,47 @@
+// import { useState } from 'react'
 import { useState } from 'react'
+import Dimensions from '../dimensions/Dimensions'
 import formStyles from './Form.module.css'
 import { useHistory } from 'react-router-dom'
-import Error from '../error/Error'
+import { v4 as uuidv4 } from 'uuid';
+// import Error from '../error/Error'
 
 const Form = () => {
-    let [length, setLength] = useState(null)
-    let [width, setWidth] = useState(null)
-    let [height, setHeight] = useState(null)
-    let [count, setCount] = useState(0)
-    let [isError, setIsError] = useState(false)
+    // let [isError, setIsError] = useState(false)
+    const [sizes, setSizes] = useState([
+        { id: uuidv4() }
+    ])
     const history = useHistory()
 
     const handleSubmit = e => {
         e.preventDefault()
-        if (length && width && height && count > 0) {
-            history.push('/delivery')
-        } else {
-            setIsError(true)
-        }
+        history.push('/delivery')
     }
 
-    const handleIncrement = () => {
-        setCount(++count)
+    const handleAddButton = () => {
+        setSizes([
+            ...sizes, 
+            { id: uuidv4() }
+        ])
+        console.log(sizes)
     }
 
-    const handleDecrement = () => {
-        if (count > 0) {
-            setCount(--count)
-        }
+    const handleDelete = (id) => {
+        console.log(1)
+        setSizes(sizes.filter(item => item.id !== id))
     }
 
     return (
         <form className={formStyles.form}>
-            <div className={formStyles.item}>
-                <label className={formStyles.label} htmlFor="length">Длина</label>
-                <input 
-                    className={formStyles.input} 
-                    type="number" 
-                    name="length"
-                    placeholder='0,45м'
-                    onChange={(e) => setLength(e.target.value)}
-                />
-            </div>
-            <div className={formStyles.item}>
-                <label className={formStyles.label} htmlFor="width">Ширина</label>
-                <input
-                    className={formStyles.input}
-                    type="number" 
-                    name="width"
-                    placeholder='0,45м'
-                    onChange={(e) => setWidth(e.target.value)}
-                />
-            </div>
-            <div className={formStyles.item}>
-                <label className={formStyles.label} htmlFor="height">Высота</label>
-                <input
-                    className={formStyles.input}
-                    type="number" 
-                    name="height"
-                    placeholder='0,45м'
-                    onChange={(e) => setHeight(e.target.value)}
-                />
-            </div>
-            <div className={formStyles.item}>
-                <p className={formStyles.label}>Кол-во</p>
-                <div className={formStyles.counter}>
-                    <button type='button' onClick={handleDecrement} className={formStyles.math}>-</button>
-                    <p className={formStyles.number}>{ count }</p>
-                    <button type='button' onClick={handleIncrement} className={formStyles.math}>+</button>
-                </div>
-            </div>
-            <button type='button' className={formStyles.addButton}>
+            { sizes.map(item => {
+                return <Dimensions key={item.id} handleDelete={handleDelete} id={item.id}/>
+            })}
+            <button onClick={handleAddButton} type='button' className={formStyles.addButton}>
                 <span>Добавить</span>
                 <span className={formStyles.plus}>+</span>
             </button>
             <button onClick={handleSubmit} type='submit' className={formStyles.button}>Подтвердить</button>
-            { isError && <Error />}
+            {/* { isError && <Error />} */}
         </form>
     )
 }

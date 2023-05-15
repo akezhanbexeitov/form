@@ -3,7 +3,7 @@ import Dimensions from '../dimensions/Dimensions'
 import formStyles from './Form.module.css'
 import { useHistory } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid';
-import { BASE_URL } from '../constants';
+// import { BASE_URL } from '../constants';
 
 const Form = () => {
     const [sizes, setSizes] = useState([
@@ -41,6 +41,7 @@ const Form = () => {
         //         history.push('/delivery')
         //     })
         //     .catch(error => console.log(error))
+        history.push('/delivery')
     }
 
     const handleAddButton = () => {

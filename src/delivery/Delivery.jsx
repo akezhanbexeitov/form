@@ -31,7 +31,14 @@ const Delivery = () => {
                 )}
                 <FontAwesomeIcon icon={faChevronDown} />
             </div>
-            <button onClick={handleSubmit} type='submit' className={deliveryStyles.button}>Подтвердить</button>
+            <button 
+                onClick={handleSubmit} 
+                type='button' 
+                className={deliveryStyles.button}
+                disabled={!selectedOption}
+            >
+                Подтвердить
+            </button>
         </div>
     )
 }

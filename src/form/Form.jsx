@@ -50,7 +50,14 @@ const Form = () => {
                 <span>Добавить</span>
                 <span className={formStyles.plus}>+</span>
             </button>
-            <button onClick={handleSubmit} type='submit' className={formStyles.button}>Подтвердить</button>
+            <button 
+                onClick={handleSubmit} 
+                type='submit' 
+                className={formStyles.button}
+                disabled={!sizes.length}
+            >
+                Подтвердить
+            </button>
         </form>
     )
 }

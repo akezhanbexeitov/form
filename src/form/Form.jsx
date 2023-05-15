@@ -32,17 +32,20 @@ const Form = () => {
 
     return (
         <form className={formStyles.form}>
-            { sizes.map(item => {
-                return (
-                    <Dimensions
-                        key={item.id}
-                        handleDelete={handleDelete}
-                        handleSubmit={isSubmitting} 
-                        patchValues={setValues}
-                        id={item.id}
-                    />
-                )
-            })}
+            { sizes.length 
+                ?   sizes.map(item => {
+                        return (
+                            <Dimensions
+                                key={item.id}
+                                handleDelete={handleDelete}
+                                handleSubmit={isSubmitting} 
+                                patchValues={setValues}
+                                id={item.id}
+                            />
+                        )
+                    })
+                :   <p className={formStyles.hint}>Добавьте блок с измерениями</p>
+            }
             <button onClick={handleAddButton} type='button' className={formStyles.addButton}>
                 <span>Добавить</span>
                 <span className={formStyles.plus}>+</span>

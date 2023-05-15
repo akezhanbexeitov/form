@@ -1,0 +1,75 @@
+.container {
+    width: 100%;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 28px;
+    margin-bottom: 11px;
+    width: 100%;
+}
+
+.label {
+    flex: 0.6;
+}
+
+.counter {
+    display: flex;
+    align-items: center;
+    flex: 3;
+    column-gap: 30px;
+}
+
+.math {
+    font-size: 30px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.number {
+    font-size: 22px;
+}
+
+.input {
+    padding: 12px 13px;
+    background-color: #F8F8F9;
+    border-radius: 15px;
+    border: none;
+    flex: 3;
+}
+
+.input::placeholder {
+    color: #C0C0C0;
+}
+
+.close {
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    top: -30px;
+    right: -30px;
+}
+
+.close::before,
+.close::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60%;
+    height: 2px;
+    background-color: black;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.close::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}

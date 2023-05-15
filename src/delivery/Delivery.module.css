@@ -20,6 +20,8 @@
     position: relative;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
 }
 
 .dropdownList {
@@ -36,7 +38,6 @@
 .listItem {
     display: flex;
     justify-content: space-between;
-    cursor: pointer;
 }
 
 .listItem:not(:last-child) {
@@ -55,4 +56,8 @@
 
 .button:hover {
     background-color: #e5b411;
+}
+
+.button:disabled {
+    background-color: #686763;
 }

@@ -3,6 +3,7 @@ import Dimensions from '../dimensions/Dimensions'
 import formStyles from './Form.module.css'
 import { useHistory } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid';
+import { BASE_URL } from '../constants';
 
 const Form = () => {
     const [sizes, setSizes] = useState([
@@ -13,10 +14,33 @@ const Form = () => {
     const history = useHistory()
 
     const handleSubmit = e => {
-        setIsSubmitting(true)
-        console.log(values);
         e.preventDefault()
-        history.push('/delivery')
+        setIsSubmitting(true)
+        const data = {
+            items: [],
+            order: 12
+        }
+        data.items = values.map(item => {
+            return {
+                length: parseFloat(item.length.current),
+                width: parseFloat(item.width.current),
+                height: parseFloat(item.height.current),
+                quantity: parseFloat(item.count.current)
+            }
+        })
+        console.log('data is', data)
+        // fetch(`${BASE_URL}/orders/order_deliveries/${12}`, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify(data)
+        // })
+        //     .then(res => {
+        //         res.json()
+        //         history.push('/delivery')
+        //     })
+        //     .catch(error => console.log(error))
     }
 
     const handleAddButton = () => {

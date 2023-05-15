@@ -20,6 +20,8 @@
     position: relative;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
 }
 
 .dropdownList {
@@ -36,7 +38,6 @@
 .listItem {
     display: flex;
     justify-content: space-between;
-    cursor: pointer;
 }
 
 .listItem:not(:last-child) {
